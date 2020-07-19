@@ -1,4 +1,4 @@
-package com.example.test_dev_app
+package com.example.mspr_b3_epsi
 
 import io.flutter.embedding.android.FlutterActivity
 

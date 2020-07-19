@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_dev_app/coupon.dart';
+import 'package:mspr_b3_epsi/coupon.dart';
 
 final String backendUrl = 'http://51.83.42.212:3000';
 final String couponId = '5eb00fce030b66923c6a9125';
