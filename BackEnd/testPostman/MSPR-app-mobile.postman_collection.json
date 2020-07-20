@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "2f461f15-da0b-4e92-9517-42f71e6e029d",
+		"name": "MSPR-app-mobile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pingBack",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9465435-20df-48a3-81ab-32a83402b4e3",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBACKEND}}/ping",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCoupons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "001f2d40-b390-4ccd-b2d9-965cedba652e",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"})\r",
+							"\r",
+							"const dataResponse = JSON.parse(responseBody);\r",
+							"console.log(dataResponse.id);\r",
+							"pm.environment.set(\"couponId\", dataResponse[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBACKEND}}/coupons",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"coupons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOneCoupon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a13b1f47-2952-43a6-9312-35393fe86b14",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBACKEND}}/coupons/{{couponId}}",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"coupons",
+						"{{couponId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postCoupon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "edf3779e-5be4-4415-a0c9-e5846f352394",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"})\r",
+							"\r",
+							"const dataResponse = JSON.parse(responseBody);\r",
+							"console.log(dataResponse.id);\r",
+							"pm.environment.set(\"newCouponId\", dataResponse.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"value\": 25,\r\n  \"message\": \"Coupon with Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBACKEND}}/coupons",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"coupons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyCoupon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ea78862-621d-477c-83e9-57e91cb7df30",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"value\": 21,\r\n  \"message\": \"Coupon updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBACKEND}}/coupons/{{newCouponId}}",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"coupons",
+						"{{newCouponId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCoupon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00cb9ec1-758a-4bdb-9120-2132c3d20956",
+						"exec": [
+							"pm.test(\"Status\", () => {\r",
+							"    pm.expect(pm.response.code).to.equal(204);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBACKEND}}/coupons/{{newCouponId}}",
+					"host": [
+						"{{URLBACKEND}}"
+					],
+					"path": [
+						"coupons",
+						"{{newCouponId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
